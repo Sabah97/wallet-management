@@ -1,4 +1,3 @@
-"use client";
 /**
  * Assumptions:
  * No decimal balance value
@@ -6,19 +5,7 @@
  * Removing a denominator will remove it from the total balance as well
  */
 
-// TODO:
-// Fix the column spacing
-// Position and Style the select box
-// Show loading for conversion to be done
-// Input on the bottom to add denominator
-// X mark to remove denominator
-// Changing Currency should prompt the user, "Are you sure you want to switch currencies? You will lose count of your notes." then another prompt, "Do you want to convert your current balance to BDT/USD/EUR or start from 0 balance?"
-// Persistance using local storage
-// add the denominators in local storage as well
-// scan the file for other comments
-// adding notes to new balance should not start from 0
-// remove the built in alerts with the Swal fire
-
+"use client";
 import { useState, useEffect } from "react";
 import { IoWalletSharp } from "react-icons/io5";
 import Swal from "sweetalert2";
@@ -114,8 +101,8 @@ export default function WalletApp() {
             : currency.denominators,
         }))
       );
-      setInputNumber(""); // Clear the input field
-      // setCurrencies([...currencies]); // Update the currencies state to trigger a re-render
+      setInputNumber("");
+      // setCurrencies([...currencies]);
       const newNotes = { ...notes, [newDenominator]: 0 };
       setNotes(newNotes);
 
@@ -286,26 +273,11 @@ export default function WalletApp() {
     //   confirmButtonText: "Yes, switch currencies!",
     // });
     const selectedCurrency = event.target.value;
-    if (/* firstConfirmation.isConfirmed */ true) {
-      // Show the second confirmation dialog
-      // const secondConfirmation = await Swal.fire({
-      //   title:
-      //     "Do you want to convert your current balance to " +
-      //     selectedCurrency +
-      //     "?",
-      //   text: 'Press "Yes" to convert your balance or "Cancel" to start from 0 balance.',
-      //   icon: "question",
-      //   showCancelButton: true,
-      //   confirmButtonColor: "#3085d6",
-      //   cancelButtonColor: "#d33",
-      //   confirmButtonText: "Yes",
-      // });
-
-      if (/* secondConfirmation.isConfirmed */ true) {
-        // Perform the conversion logic here, for example:
+    if (true) {
+      if (true) {
         convertCurrency(getActiveCurrency().type, event.target.value);
         setActiveCurrency(event.target.value);
-        // Show success message or perform other actions if needed
+
         Swal.fire("Converted!", "Your balance has been converted.", "success");
       } else {
         // Start from 0 balance logic here
@@ -317,10 +289,6 @@ export default function WalletApp() {
           "success"
         );
       }
-    } else {
-      // User canceled the first confirmation dialog
-      // You can show a message or perform other actions if needed
-      Swal.fire("Cancelled", "Currency change cancelled.", "error");
     }
   };
 
@@ -372,7 +340,6 @@ export default function WalletApp() {
           </select>
         </div>
         <div className="notes-input-section flex flex-col items-center">
-          {/* the columns should be aligned, it does not look good with different horizontal spacing */}
           {Object.keys(notes).map((note) => (
             <div className="flex flex-row">
               <button
@@ -422,15 +389,6 @@ export default function WalletApp() {
             </button>
           </div>
         </div>
-
-        {/* <div className='buttons-section flex justify-center mt-6'>
-					<button
-						className='bg-[#6235f5] px-6 py-2 border-2 border-[#a792f5] rounded-lg'
-						onClick={handleReset}
-					>
-						Reset
-					</button>
-				</div> */}
       </main>
     </div>
   );
