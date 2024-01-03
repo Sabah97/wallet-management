@@ -187,22 +187,24 @@ export default function WalletApp() {
 
   const convertCurrency = async (fromCurrency, toCurrency) => {
     try {
-      // const response = await fetch(
-      // 	`https://openexchangerates.org/api/latest.json?symbols=BDT,EUR,USD&app_id=${openExchangeRatesAPIKey}`
-      // );
+      const response = await fetch(
+        `https://openexchangerates.org/api/latest.json?symbols=BDT,EUR,USD&app_id=${openExchangeRatesAPIKey}`
+      );
 
-      // if (!response.ok) {
-      // 	throw new Error(`Error fetching exchange rates: ${response.statusText}`);
-      // }
+      if (!response.ok) {
+        throw new Error(
+          `Error fetching exchange rates: ${response.statusText}`
+        );
+      }
 
-      // const data = await response.json();
-      // const exchangeRates = data.rates;
+      const data = await response.json();
+      const exchangeRates = data.rates;
 
-      const exchangeRates = {
-        BDT: 109.786795,
-        EUR: 0.912147,
-        USD: 1,
-      };
+      // const exchangeRates = {
+      //   BDT: 109.786795,
+      //   EUR: 0.912147,
+      //   USD: 1,
+      // };
 
       const toUSD = totalBalance / exchangeRates[fromCurrency];
 
